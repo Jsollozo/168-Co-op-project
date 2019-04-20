@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class PlayerConnection : NetworkBehaviour
 {
 
-    public GameObject playerPrefab;
+    public GameObject playerPrefab = null;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,8 @@ public class PlayerConnection : NetworkBehaviour
             return;
         }
 
+        playerPrefab = CharacterSelect.instance.GetCharacter();
+        Debug.Log(playerPrefab.name);
         CmdSpawnPlayer();
     }
 
@@ -24,10 +26,14 @@ public class PlayerConnection : NetworkBehaviour
     [Command]
     void CmdSpawnPlayer()
     {
+        Debug.Log(playerPrefab.name);
+
         GameObject player = Instantiate(playerPrefab);
 
-        myPlayerUnit = player;
+        //myPlayerUnit = player;
 
-        NetworkServer.SpawnWithClientAuthority(myPlayerUnit, connectionToClient);
+        //Debug.Log(myPlayerUnit.name);
+
+        NetworkServer.SpawnWithClientAuthority(player, connectionToClient);
     }
 }

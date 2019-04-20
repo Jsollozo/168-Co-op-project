@@ -9,6 +9,9 @@ public class PlayerUnit : NetworkBehaviour
 
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] Vector3 direction;
+    [SerializeField] float angle;
+
+    public GameObject bulletPrefab;
 
     private void Awake()
     {
@@ -33,6 +36,13 @@ public class PlayerUnit : NetworkBehaviour
         }
 
         direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
+
+        Look();
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            CmdShoot();
+        }
     }
 
     private void FixedUpdate()
@@ -48,5 +58,27 @@ public class PlayerUnit : NetworkBehaviour
     void MovePlayer()
     {
         rb.velocity = direction.normalized * moveSpeed;
+    }
+
+    void Look()
+    { 
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        angle = Mathf.Atan2(mousePos.y - this.transform.position.y, mousePos.x - this.transform.position.x) * Mathf.Rad2Deg;
+
+        this.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+    
+    }
+
+    [Command]
+    void CmdShoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
+
+        bullet.transform.eulerAngles = this.transform.eulerAngles;
+
+        Debug.Log("bullet: " + bullet.transform.rotation);
+
+        NetworkServer.Spawn(bullet);
     }
 }

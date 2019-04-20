@@ -60,7 +60,8 @@ MonoBehaviour:
   m_OfflineScene: 
   m_OnlineScene: 
   m_SpawnPrefabs:
-  - {fileID: 7208897157245337014, guid: bd5827f962a854cf581df159d3d164b2, type: 3}
+  - {fileID: 864748505309298545, guid: 1cceed2ec8a064adf96796306dd782ce, type: 3}
+  - {fileID: 1956952124707604365, guid: 8bf1f66ebdd16450b9bd731dbe129902, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
