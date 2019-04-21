@@ -264,12 +264,12 @@ PrefabInstance:
     - target: {fileID: 6121152020229084350, guid: e9cbd11631c49432bb863b878c641852,
         type: 3}
       propertyPath: m_SpawnPrefabs.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6121152020229084350, guid: e9cbd11631c49432bb863b878c641852,
         type: 3}
       propertyPath: characterList.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6121152020229084350, guid: e9cbd11631c49432bb863b878c641852,
         type: 3}
@@ -287,7 +287,7 @@ PrefabInstance:
         type: 3}
       propertyPath: characterList.Array.data[0]
       value: 
-      objectReference: {fileID: 1956952124707604365, guid: 8bf1f66ebdd16450b9bd731dbe129902,
+      objectReference: {fileID: 3720767713651146815, guid: 268bedd99a44048aaae549490fb7a8b0,
         type: 3}
     - target: {fileID: 6121152020229084350, guid: e9cbd11631c49432bb863b878c641852,
         type: 3}
@@ -300,6 +300,24 @@ PrefabInstance:
       propertyPath: m_SpawnPrefabs.Array.data[2]
       value: 
       objectReference: {fileID: 2926541101513932043, guid: 4e8efd6583e0d43ddb419c7b10f48b8c,
+        type: 3}
+    - target: {fileID: 6121152020229084350, guid: e9cbd11631c49432bb863b878c641852,
+        type: 3}
+      propertyPath: m_SpawnPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 3720767713651146815, guid: 268bedd99a44048aaae549490fb7a8b0,
+        type: 3}
+    - target: {fileID: 6121152020229084350, guid: e9cbd11631c49432bb863b878c641852,
+        type: 3}
+      propertyPath: characterList.Array.data[2]
+      value: 
+      objectReference: {fileID: 1956952124707604365, guid: 8bf1f66ebdd16450b9bd731dbe129902,
+        type: 3}
+    - target: {fileID: 6121152020229084350, guid: e9cbd11631c49432bb863b878c641852,
+        type: 3}
+      propertyPath: m_SpawnPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 8985780975561200802, guid: d15b417cb7ced4ceb8585f61d4b416bc,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9cbd11631c49432bb863b878c641852, type: 3}

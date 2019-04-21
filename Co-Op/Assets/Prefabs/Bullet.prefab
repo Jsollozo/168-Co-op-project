@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 5
+  bulletLife: 2
 --- !u!114 &7990379527677507856
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,7 +41,7 @@ public class PlayerUnit : NetworkBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            CmdShoot();
+            Shoot();
         }
     }
 
@@ -68,6 +68,11 @@ public class PlayerUnit : NetworkBehaviour
 
         this.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     
+    }
+
+    virtual public void Shoot()
+    {
+        CmdShoot();
     }
 
     [Command]

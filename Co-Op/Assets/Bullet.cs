@@ -8,6 +8,7 @@ public class Bullet : NetworkBehaviour
     //private Rigidbody2D rb;
 
     [SerializeField] float bulletSpeed;
+    [SerializeField] float bulletLife;
 
     void Awake()
     {
@@ -22,7 +23,7 @@ public class Bullet : NetworkBehaviour
 
     void Update()
     {
-        Destroy(this.gameObject, 2);
+        Destroy(this.gameObject, bulletLife);
     }
 
     private void FixedUpdate()
