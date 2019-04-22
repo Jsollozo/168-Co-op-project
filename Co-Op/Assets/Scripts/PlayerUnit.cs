@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Cinemachine;
 
 public class PlayerUnit : NetworkBehaviour
 {
     private Rigidbody2D rb;
+    [SerializeField] CinemachineVirtualCamera vcam = null;
 
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] Vector3 direction;
@@ -16,6 +18,11 @@ public class PlayerUnit : NetworkBehaviour
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        Debug.Log("Yes");
+        vcam = GameObject.FindGameObjectWithTag("cam").GetComponent<CinemachineVirtualCamera>();
+
+        vcam.m_Follow = this.transform;
+        vcam.m_LookAt = this.transform;
     }
 
     // Start is called before the first frame update
