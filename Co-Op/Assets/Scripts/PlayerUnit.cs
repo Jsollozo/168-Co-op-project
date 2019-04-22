@@ -28,7 +28,7 @@ public class PlayerUnit : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    virtual public void Update()
     {
         if (!hasAuthority)
         {

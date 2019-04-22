@@ -155,7 +155,7 @@ PrefabInstance:
     - target: {fileID: 6162581882272200021, guid: 4e8efd6583e0d43ddb419c7b10f48b8c,
         type: 3}
       propertyPath: bulletLife
-      value: 0.25
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e8efd6583e0d43ddb419c7b10f48b8c, type: 3}
