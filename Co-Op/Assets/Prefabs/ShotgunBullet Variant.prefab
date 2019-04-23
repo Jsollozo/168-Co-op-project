@@ -147,6 +147,11 @@ PrefabInstance:
       propertyPath: m_AssetId.i15
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8336854063056097320, guid: 4e8efd6583e0d43ddb419c7b10f48b8c,
+        type: 3}
+      propertyPath: m_LocalPlayerAuthority
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6162581882272200021, guid: 4e8efd6583e0d43ddb419c7b10f48b8c,
         type: 3}
       propertyPath: bulletSpeed
@@ -155,7 +160,7 @@ PrefabInstance:
     - target: {fileID: 6162581882272200021, guid: 4e8efd6583e0d43ddb419c7b10f48b8c,
         type: 3}
       propertyPath: bulletLife
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e8efd6583e0d43ddb419c7b10f48b8c, type: 3}

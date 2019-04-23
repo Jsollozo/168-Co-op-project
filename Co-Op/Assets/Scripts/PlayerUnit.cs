@@ -18,11 +18,7 @@ public class PlayerUnit : NetworkBehaviour
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        Debug.Log("Yes");
-        vcam = GameObject.FindGameObjectWithTag("cam").GetComponent<CinemachineVirtualCamera>();
 
-        vcam.m_Follow = this.transform;
-        vcam.m_LookAt = this.transform;
     }
 
     // Start is called before the first frame update
@@ -37,6 +33,16 @@ public class PlayerUnit : NetworkBehaviour
     // Update is called once per frame
     virtual public void Update()
     {
+        if(vcam == null)
+        {
+            if(isLocalPlayer)
+            {
+                vcam = GameObject.FindGameObjectWithTag("cam").GetComponent<CinemachineVirtualCamera>();
+                vcam.m_Follow = this.transform;
+                vcam.m_LookAt = this.transform;
+            }
+        }
+
         if (!hasAuthority)
         {
             return;
@@ -92,5 +98,6 @@ public class PlayerUnit : NetworkBehaviour
         Debug.Log("bullet: " + bullet.transform.rotation);
 
         NetworkServer.Spawn(bullet);
+
     }
 }

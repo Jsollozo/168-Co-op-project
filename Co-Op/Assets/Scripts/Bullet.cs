@@ -10,6 +10,8 @@ public class Bullet : NetworkBehaviour
     [SerializeField] float bulletSpeed;
     [SerializeField] float bulletLife;
 
+    bool wantsToDie = false;
+
     void Awake()
     {
         //rb = this.GetComponent<Rigidbody2D>();
@@ -19,15 +21,33 @@ public class Bullet : NetworkBehaviour
     void Start()
     {
         //rb.velocity = transform.forward * bulletSpeed;
+        //Destroy(this.gameObject, bulletLife);
+        StartCoroutine(DestroyBulletCoroutine());
     }
 
     void Update()
     {
-        Destroy(this.gameObject, bulletLife);
+        if (wantsToDie)
+        {
+            CmdBulletDestroy();
+        }
     }
 
     private void FixedUpdate()
     {
         this.transform.position += transform.right * bulletSpeed * Time.deltaTime;
+    }
+
+    [Command]
+    void CmdBulletDestroy()
+    {
+        NetworkServer.Destroy(this.gameObject);
+    }
+
+    private IEnumerator DestroyBulletCoroutine()
+    {
+        yield return new WaitForSeconds(bulletLife);
+        wantsToDie = true;
+
     }
 }
