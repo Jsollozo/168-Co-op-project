@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunBullet Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2926541101513932043, guid: 4e8efd6583e0d43ddb419c7b10f48b8c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bullet
+      objectReference: {fileID: 0}
     - target: {fileID: 2926541101513932047, guid: 4e8efd6583e0d43ddb419c7b10f48b8c,
         type: 3}
       propertyPath: m_LocalPosition.x
