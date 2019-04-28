@@ -10,10 +10,13 @@ public class EnemyUnit : NetworkBehaviour
     [SerializeField] GameObject target;
     private Rigidbody2D rb;
 
+    private Health health;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<Health>();
         // TEMP: find a player upon spawning to track
         CmdFindTarget();
     }
@@ -35,7 +38,11 @@ public class EnemyUnit : NetworkBehaviour
         if (collision.collider.tag == "Bullet")
         {
             Destroy(collision.collider.gameObject);
-            Destroy(gameObject);
+            health.TakeDamage(1);
+            if (health.GetHealth() <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

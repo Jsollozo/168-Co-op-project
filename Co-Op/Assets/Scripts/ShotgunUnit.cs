@@ -13,12 +13,18 @@ public class ShotgunUnit : PlayerUnit
     [Command]
     void CmdShotgunShoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
-        GameObject bullet2 = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
-        GameObject bullet3 = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
+        var playerCollider = this.GetComponent<Collider2D>();
 
+        GameObject bullet = Instantiate(bulletPrefab, launchPoint.position, Quaternion.identity);
+        Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), playerCollider);
         bullet.transform.eulerAngles = this.transform.eulerAngles;
-        bullet2.transform.eulerAngles = this.transform.eulerAngles + new Vector3(0,0,25);
+
+        GameObject bullet2 = Instantiate(bulletPrefab, launchPoint.position, Quaternion.identity);
+        Physics2D.IgnoreCollision(bullet2.GetComponent<Collider2D>(), playerCollider);
+        bullet2.transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 0, 25);
+
+        GameObject bullet3 = Instantiate(bulletPrefab, launchPoint.position, Quaternion.identity);
+        Physics2D.IgnoreCollision(bullet3.GetComponent<Collider2D>(), playerCollider);
         bullet3.transform.eulerAngles = this.transform.eulerAngles + new Vector3(0,0,-25);
 
         //Debug.Log("bullet: " + bullet.transform.rotation);
