@@ -49,4 +49,10 @@ public class CharsSelectNetworkManager : NetworkManager
         chosenCharacter = 2;
         charSelectPanel.SetActive(false);
     }
+
+    public void ChooseTrianglee()
+    {
+        chosenCharacter = 3;
+        charSelectPanel.SetActive(false);
+    }
 }
