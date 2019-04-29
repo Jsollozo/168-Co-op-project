@@ -18,6 +18,12 @@ public class PlayerUnit : NetworkBehaviour
     public GameObject bulletPrefab;
     [SerializeField] protected Transform launchPoint;
 
+    [SyncVar] public bool marked;
+
+    private SpriteRenderer SpriteR;
+    public Sprite DefaultSprite;
+    public Sprite MarkedSprite;
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -27,6 +33,9 @@ public class PlayerUnit : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Get the sprite renderer
+        SpriteR = GetComponentInChildren<SpriteRenderer>();
+
         if (!hasAuthority)
         {
             return;
@@ -36,6 +45,15 @@ public class PlayerUnit : NetworkBehaviour
     // Update is called once per frame
     virtual public void Update()
     {
+        if (marked)
+        {
+            SpriteR.sprite = MarkedSprite;
+        }
+        else
+        {
+            SpriteR.sprite = DefaultSprite;
+        }
+
         if(vcam == null)
         {
             Debug.Log("vcam is null");
@@ -59,7 +77,14 @@ public class PlayerUnit : NetworkBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            if (!marked)
+            {
+                Shoot();
+            }
+            else
+            {
+                //Marked player shooting goes here
+            }
         }
     }
 
