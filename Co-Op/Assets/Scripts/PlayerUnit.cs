@@ -45,6 +45,11 @@ public class PlayerUnit : NetworkBehaviour
     // Update is called once per frame
     virtual public void Update()
     {
+        if (health.GetHealth() <= 0)
+        {
+            Debug.Log("Frozen/Dead");
+        }
+
         if (marked)
         {
             SpriteR.sprite = MarkedSprite;
@@ -120,10 +125,6 @@ public class PlayerUnit : NetworkBehaviour
             Debug.Log("player collided with bullet");
             Destroy(collision.collider.gameObject);
             health.TakeDamage(1);
-            if (health.GetHealth() <= 0)
-            {
-                Debug.Log("Frozen/Dead");
-            }
         }
     }
 
@@ -141,7 +142,7 @@ public class PlayerUnit : NetworkBehaviour
 
         Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
 
-        Debug.Log("bullet: " + bullet.transform.rotation);
+        //Debug.Log("bullet: " + bullet.transform.rotation);
 
         NetworkServer.Spawn(bullet);
 

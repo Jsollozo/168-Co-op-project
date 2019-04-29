@@ -10,8 +10,6 @@ public class Bullet : NetworkBehaviour
     [SerializeField] protected float bulletSpeed;
     [SerializeField] protected float bulletLife;
 
-    private Vector3 direction;
-
     bool wantsToDie = false;
 
     void Awake()
@@ -20,14 +18,14 @@ public class Bullet : NetworkBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         //rb.velocity = transform.forward * bulletSpeed;
         //Destroy(this.gameObject, bulletLife);
         StartCoroutine(DestroyBulletCoroutine());
     }
 
-    void Update()
+    protected void Update()
     {
         if (wantsToDie)
         {
@@ -35,18 +33,18 @@ public class Bullet : NetworkBehaviour
         }
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         this.transform.position += transform.right * bulletSpeed * Time.deltaTime;
     }
 
     [Command]
-    void CmdBulletDestroy()
+    protected void CmdBulletDestroy()
     {
         NetworkServer.Destroy(this.gameObject);
     }
 
-    private IEnumerator DestroyBulletCoroutine()
+    protected IEnumerator DestroyBulletCoroutine()
     {
         yield return new WaitForSeconds(bulletLife);
         wantsToDie = true;

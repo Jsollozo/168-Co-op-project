@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 7346260004292072529, guid: 7b61919dcb4d19e4c81f696afc441361, type: 3}
+  - {fileID: 8796427862394744771, guid: 8e8a33b64189c452d9936fcb73bcc245, type: 3}
+  - {fileID: 8622059209148799976, guid: 711885e4c310c46429a7add8b73f0c32, type: 3}
   markItem: {fileID: 5877357054791026994, guid: ed139041c4d10064f9ae169297bee4c8,
     type: 3}
   spawnRate: 5
