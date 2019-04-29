@@ -445,6 +445,16 @@ PrefabInstance:
       propertyPath: m_Lens.OrthographicSize
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1996104085573301753, guid: f23be379659bd4fe2b579cfacd34da49,
+        type: 3}
+      propertyPath: m_LookaheadTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996104085573301753, guid: f23be379659bd4fe2b579cfacd34da49,
+        type: 3}
+      propertyPath: m_LookaheadSmoothing
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f23be379659bd4fe2b579cfacd34da49, type: 3}
 --- !u!1 &1372916995
@@ -698,6 +708,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1708438139}
     - target: {fileID: 394820347857764708, guid: 229122dcd63284b3ba77806a1cae8ec7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1708438139}
+    - target: {fileID: 7423352352770596522, guid: 229122dcd63284b3ba77806a1cae8ec7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

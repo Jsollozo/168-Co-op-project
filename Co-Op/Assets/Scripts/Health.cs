@@ -33,7 +33,7 @@ public class Health : NetworkBehaviour
     {
         currentHealth = health;
         healthbar.fillAmount = currentHealth / maxHealth;
-        Debug.Log(healthbar.fillAmount);
+        //Debug.Log(healthbar.fillAmount);
     }
 
     public float GetHealth()
