@@ -41,7 +41,9 @@ public class EnemySpawner : NetworkBehaviour
     void SpawnEnemy()
     {
         // to start with: spawn an enemy
-        GameObject spawnedEnemy = Instantiate(enemies[0], gameObject.transform.position, gameObject.transform.rotation);
+        int rand = Random.Range(0, enemies.Count);
+
+        GameObject spawnedEnemy = Instantiate(enemies[rand], gameObject.transform.position, gameObject.transform.rotation);
         NetworkServer.Spawn(spawnedEnemy);
     }
 

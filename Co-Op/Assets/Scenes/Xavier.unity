@@ -367,7 +367,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6656046489693022276, guid: 8bd7d9564ff7bec4ca1d6782610cdb6f,
         type: 3}
+      propertyPath: enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656046489693022276, guid: 8bd7d9564ff7bec4ca1d6782610cdb6f,
+        type: 3}
       propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 8622059209148799976, guid: 711885e4c310c46429a7add8b73f0c32,
+        type: 3}
+    - target: {fileID: 6656046489693022276, guid: 8bd7d9564ff7bec4ca1d6782610cdb6f,
+        type: 3}
+      propertyPath: enemies.Array.data[1]
       value: 
       objectReference: {fileID: 8796427862394744771, guid: 8e8a33b64189c452d9936fcb73bcc245,
         type: 3}
@@ -733,9 +744,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3010020175544598722, guid: 6cd493100351b4f3099a291a9cf6c91a,
         type: 3}
+      propertyPath: m_SpawnPrefabs.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3010020175544598722, guid: 6cd493100351b4f3099a291a9cf6c91a,
+        type: 3}
       propertyPath: charSelectPanel
       value: 
       objectReference: {fileID: 1585559265}
+    - target: {fileID: 3010020175544598722, guid: 6cd493100351b4f3099a291a9cf6c91a,
+        type: 3}
+      propertyPath: m_SpawnPrefabs.Array.data[14]
+      value: 
+      objectReference: {fileID: 8622059209148799976, guid: 711885e4c310c46429a7add8b73f0c32,
+        type: 3}
+    - target: {fileID: 3010020175544598722, guid: 6cd493100351b4f3099a291a9cf6c91a,
+        type: 3}
+      propertyPath: m_SpawnPrefabs.Array.data[15]
+      value: 
+      objectReference: {fileID: 3899257589895244597, guid: f966947d1faa54f5fbe4f374b30fb955,
+        type: 3}
     - target: {fileID: 3010020175544598724, guid: 6cd493100351b4f3099a291a9cf6c91a,
         type: 3}
       propertyPath: m_LocalPosition.x

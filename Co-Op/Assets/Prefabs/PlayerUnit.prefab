@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 348937702}
   - component: {fileID: 348937704}
   - component: {fileID: 348937703}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 423178183}
   - component: {fileID: 423178182}
   - component: {fileID: 423178181}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 1417104089}
   - component: {fileID: 1417104091}
   - component: {fileID: 1417104090}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1544031057935961728}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LaunchPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 7133812849034624057}
   - component: {fileID: 3436967679664893645}
   - component: {fileID: 5146064723236232576}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

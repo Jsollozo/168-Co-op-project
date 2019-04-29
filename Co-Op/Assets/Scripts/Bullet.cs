@@ -7,8 +7,10 @@ public class Bullet : NetworkBehaviour
 {
     //private Rigidbody2D rb;
 
-    [SerializeField] float bulletSpeed;
-    [SerializeField] float bulletLife;
+    [SerializeField] protected float bulletSpeed;
+    [SerializeField] protected float bulletLife;
+
+    private Vector3 direction;
 
     bool wantsToDie = false;
 

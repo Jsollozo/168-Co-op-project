@@ -17,8 +17,13 @@ public class Health : NetworkBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
+        if(!isServer)
+        {
+            return;
+        }
+
         currentHealth -= amount;
         OnChangeHealth(currentHealth);
 

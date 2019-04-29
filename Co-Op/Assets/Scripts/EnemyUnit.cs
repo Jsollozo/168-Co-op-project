@@ -7,13 +7,13 @@ public class EnemyUnit : NetworkBehaviour
 {
     public float moveSpeed;
 
-    [SerializeField] GameObject target;
-    private Rigidbody2D rb;
+    [SerializeField] protected GameObject target;
+    protected Rigidbody2D rb;
 
-    private Health health;
+    protected Health health;
 
     // Start is called before the first frame update
-    void Start()
+    virtual public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
@@ -22,9 +22,12 @@ public class EnemyUnit : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    virtual public void Update()
     {
-        
+        if (health.GetHealth() <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -39,10 +42,6 @@ public class EnemyUnit : NetworkBehaviour
         {
             Destroy(collision.collider.gameObject);
             health.TakeDamage(1);
-            if (health.GetHealth() <= 0)
-            {
-                Destroy(gameObject);
-            }
         }
     }
 
