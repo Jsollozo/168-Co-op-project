@@ -424,7 +424,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2926541101513932043, guid: 4e8efd6583e0d43ddb419c7b10f48b8c,
     type: 3}
   launchPoint: {fileID: 1544031057935961728}
+  healBulletPrefab: {fileID: 6150612534485698648, guid: c8a8610077cf8b547818b97bf6d08304,
+    type: 3}
   marked: 0
+  dead: 0
+  DefaultSprite: {fileID: 0}
   MarkedSprite: {fileID: 21300000, guid: 2190583f8eb608348b723bb310ebb458, type: 3}
 --- !u!114 &3436967679664893645
 MonoBehaviour:
@@ -440,6 +444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 10
   healthbar: {fileID: 1417104090}
+  healthbackground: {fileID: 348937703}
 --- !u!58 &5146064723236232576
 CircleCollider2D:
   m_ObjectHideFlags: 0

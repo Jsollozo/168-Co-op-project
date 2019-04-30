@@ -98,7 +98,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8985780975561200802, guid: d15b417cb7ced4ceb8585f61d4b416bc,
     type: 3}
   launchPoint: {fileID: 4811101494037492489}
+  healBulletPrefab: {fileID: 6150612534485698648, guid: c8a8610077cf8b547818b97bf6d08304,
+    type: 3}
   marked: 0
+  dead: 0
   DefaultSprite: {fileID: 21300000, guid: 3d1f320819aaef14fa424250e3151148, type: 3}
   MarkedSprite: {fileID: 21300000, guid: 9e6b58049dc339143bd79baa4cbe8817, type: 3}
 --- !u!1001 &6316851808761625993
@@ -108,6 +111,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7208897157245337014, guid: bd5827f962a854cf581df159d3d164b2,
+        type: 3}
+      propertyPath: m_Name
+      value: ShotgunUnit Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208897157245337014, guid: bd5827f962a854cf581df159d3d164b2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7208897157245337009, guid: bd5827f962a854cf581df159d3d164b2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -162,16 +175,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7208897157245337014, guid: bd5827f962a854cf581df159d3d164b2,
-        type: 3}
-      propertyPath: m_Name
-      value: ShotgunUnit Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 7208897157245337014, guid: bd5827f962a854cf581df159d3d164b2,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1085460452, guid: bd5827f962a854cf581df159d3d164b2, type: 3}
       propertyPath: m_AssetId.i0
@@ -237,12 +240,12 @@ PrefabInstance:
       propertyPath: m_AssetId.i15
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 423178180, guid: bd5827f962a854cf581df159d3d164b2, type: 3}
+    - target: {fileID: 1544031057935961728, guid: bd5827f962a854cf581df159d3d164b2,
+        type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1544031057935961728, guid: bd5827f962a854cf581df159d3d164b2,
-        type: 3}
+    - target: {fileID: 423178180, guid: bd5827f962a854cf581df159d3d164b2, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}

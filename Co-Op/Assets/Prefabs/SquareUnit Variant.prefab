@@ -86,6 +86,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7208897157245337014, guid: bd5827f962a854cf581df159d3d164b2,
+        type: 3}
+      propertyPath: m_Name
+      value: SquareUnit Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208897157245337014, guid: bd5827f962a854cf581df159d3d164b2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7208897157245337009, guid: bd5827f962a854cf581df159d3d164b2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -140,16 +150,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7208897157245337014, guid: bd5827f962a854cf581df159d3d164b2,
-        type: 3}
-      propertyPath: m_Name
-      value: SquareUnit Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 7208897157245337014, guid: bd5827f962a854cf581df159d3d164b2,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1085460452, guid: bd5827f962a854cf581df159d3d164b2, type: 3}
       propertyPath: m_AssetId.i0
@@ -215,6 +215,24 @@ PrefabInstance:
       propertyPath: m_AssetId.i15
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7133812849034624057, guid: bd5827f962a854cf581df159d3d164b2,
+        type: 3}
+      propertyPath: DefaultSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5e43da54df4707f498adaa2e44c08d58,
+        type: 3}
+    - target: {fileID: 7133812849034624057, guid: bd5827f962a854cf581df159d3d164b2,
+        type: 3}
+      propertyPath: MarkedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 127784e8c4139424e80dfda12e47b975,
+        type: 3}
+    - target: {fileID: 7133812849034624057, guid: bd5827f962a854cf581df159d3d164b2,
+        type: 3}
+      propertyPath: healBulletPrefab
+      value: 
+      objectReference: {fileID: 6150612534485698648, guid: c8a8610077cf8b547818b97bf6d08304,
+        type: 3}
     - target: {fileID: 423178180, guid: bd5827f962a854cf581df159d3d164b2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -229,18 +247,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.458
       objectReference: {fileID: 0}
-    - target: {fileID: 7133812849034624057, guid: bd5827f962a854cf581df159d3d164b2,
-        type: 3}
-      propertyPath: DefaultSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5e43da54df4707f498adaa2e44c08d58,
-        type: 3}
-    - target: {fileID: 7133812849034624057, guid: bd5827f962a854cf581df159d3d164b2,
-        type: 3}
-      propertyPath: MarkedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 127784e8c4139424e80dfda12e47b975,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd5827f962a854cf581df159d3d164b2, type: 3}
 --- !u!4 &864748505309298550 stripped

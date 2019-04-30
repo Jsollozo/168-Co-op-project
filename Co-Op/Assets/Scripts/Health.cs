@@ -11,6 +11,8 @@ public class Health : NetworkBehaviour
     [SyncVar(hook = "OnChangeHealth")] public float currentHealth;
 
     public Image healthbar;
+    public Image healthbackground;
+
 
     private void Start()
     {
@@ -34,6 +36,23 @@ public class Health : NetworkBehaviour
         }
     }
 
+    public void Heal(float amount)
+    {
+        if (!isServer)
+        {
+            return;
+        }
+
+        currentHealth += amount;
+        OnChangeHealth(currentHealth);
+
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+            Debug.Log("Dead");
+        }
+    }
+
     private void OnChangeHealth(float health)
     {
         currentHealth = health;
@@ -44,5 +63,15 @@ public class Health : NetworkBehaviour
     public float GetHealth()
     {
         return currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public void SetBackgroundColor(Color c)
+    {
+        healthbackground.color = c;
     }
 }

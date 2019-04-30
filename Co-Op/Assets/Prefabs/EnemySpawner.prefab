@@ -47,7 +47,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 8796427862394744771, guid: 8e8a33b64189c452d9936fcb73bcc245, type: 3}
   - {fileID: 8622059209148799976, guid: 711885e4c310c46429a7add8b73f0c32, type: 3}
-  spawnRate: 5
+  spawnRate: 10
 --- !u!114 &6656046489693022278
 MonoBehaviour:
   m_ObjectHideFlags: 0

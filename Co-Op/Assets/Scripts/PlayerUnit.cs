@@ -18,7 +18,10 @@ public class PlayerUnit : NetworkBehaviour
     public GameObject bulletPrefab;
     [SerializeField] protected Transform launchPoint;
 
+    public GameObject healBulletPrefab;
+
     [SyncVar] public bool marked;
+    [SyncVar] public bool dead;
 
     private SpriteRenderer SpriteR;
     public Sprite DefaultSprite;
@@ -48,6 +51,22 @@ public class PlayerUnit : NetworkBehaviour
         if (health.GetHealth() <= 0)
         {
             Debug.Log("Frozen/Dead");
+            dead = true;
+        }
+
+        if (dead)
+        {
+            health.SetBackgroundColor(Color.red);
+
+            if (health.GetHealth() >= health.GetMaxHealth())
+            {
+                Debug.Log("Revived");
+                dead = false;
+            }
+        }
+        else
+        {
+            health.SetBackgroundColor(Color.gray);
         }
 
         if (marked)
@@ -82,13 +101,13 @@ public class PlayerUnit : NetworkBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if (!marked)
+            if (!marked && !dead)
             {
                 Shoot();
             }
-            else
+            else if (!dead)
             {
-                //Marked player shooting goes here
+                CmdHealShoot();
             }
         }
     }
@@ -105,14 +124,24 @@ public class PlayerUnit : NetworkBehaviour
 
     void MovePlayer()
     {
-        rb.velocity = direction.normalized * moveSpeed;
+        if (!dead)
+        {
+            rb.velocity = direction.normalized * moveSpeed;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     void Look()
     { 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        angle = Mathf.Atan2(mousePos.y - this.transform.position.y, mousePos.x - this.transform.position.x) * Mathf.Rad2Deg;
+        if (!dead)
+        {
+            angle = Mathf.Atan2(mousePos.y - this.transform.position.y, mousePos.x - this.transform.position.x) * Mathf.Rad2Deg;
+        }
 
         this.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     
@@ -130,6 +159,16 @@ public class PlayerUnit : NetworkBehaviour
         {
             Debug.Log("player collided with enemy");
             TakeDamage(1);
+        }
+        if (collision.collider.tag == "HealBullet")
+        {
+            Debug.Log("player collided with heal bullet");
+
+            if (dead)
+            {
+                Destroy(collision.collider.gameObject);
+                health.Heal(0.5f);
+            }
         }
     }
 
@@ -159,6 +198,21 @@ public class PlayerUnit : NetworkBehaviour
         //Debug.Log("bullet: " + bullet.transform.rotation);
 
         NetworkServer.Spawn(bullet);
+
+    }
+
+    [Command]
+    void CmdHealShoot()
+    {
+        GameObject healBullet = Instantiate(healBulletPrefab, launchPoint.position, Quaternion.identity);
+
+        healBullet.transform.eulerAngles = this.transform.eulerAngles;
+
+        Physics2D.IgnoreCollision(healBullet.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
+
+        //Debug.Log("bullet: " + bullet.transform.rotation);
+
+        NetworkServer.Spawn(healBullet);
 
     }
 }
