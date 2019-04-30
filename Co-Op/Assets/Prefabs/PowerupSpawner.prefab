@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6656046489693022283
+--- !u!1 &3925446057107625473
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6656046489693022277}
-  - component: {fileID: 6656046489693022276}
-  - component: {fileID: 6656046489693022278}
+  - component: {fileID: 3925446057107625487}
+  - component: {fileID: 3925446057107625484}
+  - component: {fileID: 7504681587825797590}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: PowerupSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6656046489693022277
+--- !u!4 &3925446057107625487
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6656046489693022283}
+  m_GameObject: {fileID: 3925446057107625473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,29 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6656046489693022276
+--- !u!114 &3925446057107625484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6656046489693022283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d00f2b919a5b9a44acd085431dc9f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 8796427862394744771, guid: 8e8a33b64189c452d9936fcb73bcc245, type: 3}
-  - {fileID: 8622059209148799976, guid: 711885e4c310c46429a7add8b73f0c32, type: 3}
-  spawnRate: 5
---- !u!114 &6656046489693022278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6656046489693022283}
+  m_GameObject: {fileID: 3925446057107625473}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
@@ -81,3 +65,19 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &7504681587825797590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925446057107625473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c044ee84d16bb408fc3cc643aff0b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []
+  markItem: {fileID: 5877357054791026994, guid: ed139041c4d10064f9ae169297bee4c8,
+    type: 3}
+  spawnRate: 10

@@ -2,37 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.AI;
 
 public class EnemyUnit : NetworkBehaviour
 {
     public float moveSpeed;
 
-    [SerializeField] protected GameObject target;
-    protected Rigidbody2D rb;
-
+    private GameObject target;
+    private Rigidbody2D rb;
     protected Health health;
+    private NavMeshAgent agent;
 
     // Start is called before the first frame update
     virtual public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
-        // TEMP: find a player upon spawning to track
-        CmdFindTarget();
+
+        // prevent agent from making unwanted rotations
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
     // Update is called once per frame
     virtual public void Update()
     {
-        if (health.GetHealth() <= 0)
-        {
-            Destroy(gameObject);
-        }
+        // update target
+        CmdFindTarget();
     }
 
     private void FixedUpdate()
     {
-        // just move toward target for now
         CmdMoveTowardTarget();
     }
 
@@ -41,25 +42,71 @@ public class EnemyUnit : NetworkBehaviour
         if (collision.collider.tag == "Bullet")
         {
             Destroy(collision.collider.gameObject);
-            health.TakeDamage(1);
+            TakeDamage(1);
         }
+        if (collision.collider.tag == "Player")
+        {
+            TakeDamage(1);
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        health.TakeDamage(damage);
+        if (health.GetHealth() <= 0)
+        {
+            Die();
+        }
+    }
+
+    virtual protected void Die()
+    {
+        Destroy(gameObject);
     }
 
     [Command]
     void CmdFindTarget()
     {
-        // TODO: this code will be replaced when the marked mechanic is implemented
-        target = GameObject.FindGameObjectWithTag("Player");
+        // check if a target has already been set
+        if (target != null)
+        {
+            // if target is marked, there is no need to do anything
+            if (target.GetComponent<PlayerUnit>().marked == true)
+            {
+                return;
+            }
+        }
+        // if target is not a valid marked player, find the marked player and set as target
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject player in players)
+        {
+            if (player.GetComponent<PlayerUnit>().marked == true)
+            {
+                target = player;
+                return;
+            }
+        }
+        // if no marked player is found, set target to null and stop movement
+        target = null;
+        agent.isStopped = true;
     }
 
     [Command]
     void CmdMoveTowardTarget()
     {
+        // only run on server, when enemy has a valid target
         if (target != null && isServer)
         {
+            // set rotation
             Vector3 direction = target.transform.position - transform.position;
             transform.right = direction;
-            rb.velocity = direction.normalized * moveSpeed;
+
+            //// set velocity
+            //rb.velocity = direction.normalized * moveSpeed;
+
+            // use agent to control movement
+            agent.destination = target.transform.position;
+            agent.isStopped = false;
         }
     }
 }

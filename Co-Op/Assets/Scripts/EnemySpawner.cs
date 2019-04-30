@@ -6,14 +6,12 @@ using UnityEngine.Networking;
 public class EnemySpawner : NetworkBehaviour
 {
     public List<GameObject> enemies;
-    public GameObject markItem;
     public float spawnRate;
 
     public override void OnStartServer()
     {
         // begin spawning enemies upon server start
         StartCoroutine(SpawnEnemies());
-        StartCoroutine(SpawnMarkItems());
     }
 
     // Start is called before the first frame update
@@ -40,25 +38,10 @@ public class EnemySpawner : NetworkBehaviour
 
     void SpawnEnemy()
     {
-        // to start with: spawn an enemy
+        // spawn a random enemy from list
         int rand = Random.Range(0, enemies.Count);
 
         GameObject spawnedEnemy = Instantiate(enemies[rand], gameObject.transform.position, gameObject.transform.rotation);
         NetworkServer.Spawn(spawnedEnemy);
-    }
-
-    IEnumerator SpawnMarkItems()
-    {
-        for (;;)
-        {
-            yield return new WaitForSeconds(spawnRate);
-            SpawnMarkItem();
-        }
-    }
-
-    void SpawnMarkItem()
-    {
-        GameObject spawnedItem = Instantiate(markItem, gameObject.transform.position, gameObject.transform.rotation);
-        NetworkServer.Spawn(spawnedItem);
     }
 }

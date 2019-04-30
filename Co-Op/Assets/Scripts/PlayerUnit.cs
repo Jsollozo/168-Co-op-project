@@ -126,6 +126,20 @@ public class PlayerUnit : NetworkBehaviour
             Destroy(collision.collider.gameObject);
             health.TakeDamage(1);
         }
+        if (collision.collider.tag == "Enemy")
+        {
+            Debug.Log("player collided with enemy");
+            TakeDamage(1);
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        health.TakeDamage(damage);
+        if (health.GetHealth() <= 0)
+        {
+            Debug.Log("Frozen/Dead");
+        }
     }
 
     virtual public void Shoot()

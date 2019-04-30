@@ -25,14 +25,10 @@ public class ExplodingEnemy : EnemyUnit
         directions.Add(new Vector3(-1f, 1f, 0f)); // Up Left
     }
 
-    // Update is called once per frame
-    public override void Update()
+    protected override void Die()
     {
-        if(health.GetHealth() <= 0)
-        {
-            Explode();
-            Destroy(this.gameObject);
-        }
+        Explode();
+        Destroy(this.gameObject);
     }
 
     private void Explode()
