@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlueBrick(2)
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300006, guid: 6e1e0a86241d6c44dbc240c061d9d388, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.09019608, g: 0.2901961, b: 0.8705883, a: 1}
   m_Transform:
     e00: 1
     e01: 0
