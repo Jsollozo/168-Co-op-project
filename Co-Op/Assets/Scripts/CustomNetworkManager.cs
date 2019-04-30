@@ -15,7 +15,7 @@ public class CustomNetworkManager : NetworkManager
 
         chosenCharacter = characterList[n];
 
-        characterList.RemoveAt(n);
+        //characterList.RemoveAt(n);
 
         GameObject player = Instantiate(chosenCharacter, Vector3.zero, Quaternion.identity);
 

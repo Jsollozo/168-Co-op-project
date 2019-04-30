@@ -2,25 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Cinemachine;
 
 public class PlayerUnit : NetworkBehaviour
 {
     private Rigidbody2D rb;
+    private Health health;
+    
+    [SerializeField] CinemachineVirtualCamera vcam = null;
 
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] Vector3 direction;
     [SerializeField] float angle;
 
     public GameObject bulletPrefab;
+    [SerializeField] protected Transform launchPoint;
+
+    public GameObject healBulletPrefab;
+
+    [SyncVar] public bool marked;
+    [SyncVar] public bool dead;
+
+    private SpriteRenderer SpriteR;
+    public Sprite DefaultSprite;
+    public Sprite MarkedSprite;
 
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        health = this.GetComponent<Health>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        //Get the sprite renderer
+        SpriteR = GetComponentInChildren<SpriteRenderer>();
+
         if (!hasAuthority)
         {
             return;
@@ -30,6 +48,48 @@ public class PlayerUnit : NetworkBehaviour
     // Update is called once per frame
     virtual public void Update()
     {
+        if (health.GetHealth() <= 0)
+        {
+            Debug.Log("Frozen/Dead");
+            dead = true;
+        }
+
+        if (dead)
+        {
+            health.SetBackgroundColor(Color.red);
+
+            if (health.GetHealth() >= health.GetMaxHealth())
+            {
+                Debug.Log("Revived");
+                dead = false;
+            }
+        }
+        else
+        {
+            health.SetBackgroundColor(Color.gray);
+        }
+
+        if (marked)
+        {
+            SpriteR.sprite = MarkedSprite;
+        }
+        else
+        {
+            SpriteR.sprite = DefaultSprite;
+        }
+
+        if(vcam == null)
+        {
+            Debug.Log("vcam is null");
+            if(hasAuthority)
+            {
+                Debug.Log("is local player");
+                vcam = GameObject.FindGameObjectWithTag("cam").GetComponent<CinemachineVirtualCamera>();
+                vcam.m_Follow = this.transform;
+                vcam.m_LookAt = this.transform;
+            }
+        }
+
         if (!hasAuthority)
         {
             return;
@@ -41,7 +101,14 @@ public class PlayerUnit : NetworkBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            if (!marked && !dead)
+            {
+                Shoot();
+            }
+            else if (!dead)
+            {
+                CmdHealShoot();
+            }
         }
     }
 
@@ -57,17 +124,61 @@ public class PlayerUnit : NetworkBehaviour
 
     void MovePlayer()
     {
-        rb.velocity = direction.normalized * moveSpeed;
+        if (!dead)
+        {
+            rb.velocity = direction.normalized * moveSpeed;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     void Look()
     { 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        angle = Mathf.Atan2(mousePos.y - this.transform.position.y, mousePos.x - this.transform.position.x) * Mathf.Rad2Deg;
+        if (!dead)
+        {
+            angle = Mathf.Atan2(mousePos.y - this.transform.position.y, mousePos.x - this.transform.position.x) * Mathf.Rad2Deg;
+        }
 
         this.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Bullet")
+        {
+            Debug.Log("player collided with bullet");
+            Destroy(collision.collider.gameObject);
+            health.TakeDamage(1);
+        }
+        if (collision.collider.tag == "Enemy")
+        {
+            Debug.Log("player collided with enemy");
+            TakeDamage(1);
+        }
+        if (collision.collider.tag == "HealBullet")
+        {
+            Debug.Log("player collided with heal bullet");
+
+            if (dead)
+            {
+                Destroy(collision.collider.gameObject);
+                health.Heal(0.5f);
+            }
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        health.TakeDamage(damage);
+        if (health.GetHealth() <= 0)
+        {
+            Debug.Log("Frozen/Dead");
+        }
     }
 
     virtual public void Shoot()
@@ -78,12 +189,30 @@ public class PlayerUnit : NetworkBehaviour
     [Command]
     void CmdShoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, launchPoint.position, Quaternion.identity);
 
         bullet.transform.eulerAngles = this.transform.eulerAngles;
 
-        Debug.Log("bullet: " + bullet.transform.rotation);
+        Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
+
+        //Debug.Log("bullet: " + bullet.transform.rotation);
 
         NetworkServer.Spawn(bullet);
+
+    }
+
+    [Command]
+    void CmdHealShoot()
+    {
+        GameObject healBullet = Instantiate(healBulletPrefab, launchPoint.position, Quaternion.identity);
+
+        healBullet.transform.eulerAngles = this.transform.eulerAngles;
+
+        Physics2D.IgnoreCollision(healBullet.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
+
+        //Debug.Log("bullet: " + bullet.transform.rotation);
+
+        NetworkServer.Spawn(healBullet);
+
     }
 }
