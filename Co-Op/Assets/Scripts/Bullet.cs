@@ -50,4 +50,9 @@ public class Bullet : NetworkBehaviour
         wantsToDie = true;
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        CmdBulletDestroy();
+    }
 }

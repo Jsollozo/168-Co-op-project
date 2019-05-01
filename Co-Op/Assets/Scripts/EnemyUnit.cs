@@ -41,7 +41,6 @@ public class EnemyUnit : NetworkBehaviour
     {
         if (collision.collider.tag == "Bullet")
         {
-            Destroy(collision.collider.gameObject);
             TakeDamage(1);
         }
         if (collision.collider.tag == "Player")

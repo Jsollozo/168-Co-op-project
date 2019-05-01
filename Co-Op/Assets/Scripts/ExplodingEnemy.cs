@@ -46,7 +46,7 @@ public class ExplodingEnemy : EnemyUnit
 
             float angle = Mathf.Atan2(newDirection.y - this.transform.position.y, newDirection.x - this.transform.position.x) * Mathf.Rad2Deg;
 
-            GameObject explode = Instantiate(bulletPrefab, this.transform.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
+            GameObject explode = Instantiate(bulletPrefab, this.transform.position + directions[i], Quaternion.Euler(new Vector3(0f, 0f, angle)));
             explode.GetComponent<Explosion>().SetDirection(directions[i]);
 
             NetworkServer.Spawn(explode);
