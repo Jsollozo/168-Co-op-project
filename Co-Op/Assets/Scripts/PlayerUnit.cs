@@ -48,27 +48,6 @@ public class PlayerUnit : NetworkBehaviour
     // Update is called once per frame
     virtual public void Update()
     {
-        if (health.GetHealth() <= 0)
-        {
-            Debug.Log("Frozen/Dead");
-            dead = true;
-        }
-
-        if (dead)
-        {
-            health.SetBackgroundColor(Color.red);
-
-            if (health.GetHealth() >= health.GetMaxHealth())
-            {
-                Debug.Log("Revived");
-                dead = false;
-            }
-        }
-        else
-        {
-            health.SetBackgroundColor(Color.gray);
-        }
-
         if (marked)
         {
             SpriteR.sprite = MarkedSprite;
@@ -78,6 +57,7 @@ public class PlayerUnit : NetworkBehaviour
             SpriteR.sprite = DefaultSprite;
         }
 
+        // *** only the below should be in update ***
         if(vcam == null)
         {
             Debug.Log("vcam is null");
@@ -152,8 +132,7 @@ public class PlayerUnit : NetworkBehaviour
         if (collision.collider.tag == "Bullet")
         {
             Debug.Log("player collided with bullet");
-            Destroy(collision.collider.gameObject);
-            health.TakeDamage(1);
+            TakeDamage(1);
         }
         if (collision.collider.tag == "Enemy")
         {
@@ -163,12 +142,7 @@ public class PlayerUnit : NetworkBehaviour
         if (collision.collider.tag == "HealBullet")
         {
             Debug.Log("player collided with heal bullet");
-
-            if (dead)
-            {
-                Destroy(collision.collider.gameObject);
-                health.Heal(0.5f);
-            }
+            Heal(0.5f);
         }
     }
 
@@ -178,6 +152,22 @@ public class PlayerUnit : NetworkBehaviour
         if (health.GetHealth() <= 0)
         {
             Debug.Log("Frozen/Dead");
+            dead = true;
+            health.SetBackgroundColor(Color.red);
+        }
+    }
+
+    private void Heal(float damage)
+    {
+        if (dead)
+        {
+            health.Heal(damage);
+            if (health.GetHealth() >= health.GetMaxHealth())
+            {
+                Debug.Log("Revived");
+                dead = false;
+                health.SetBackgroundColor(Color.gray);
+            }
         }
     }
 
