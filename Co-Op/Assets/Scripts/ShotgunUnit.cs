@@ -14,7 +14,7 @@ public class ShotgunUnit : PlayerUnit
     void CmdShotgunShoot()
     {
         var playerCollider = this.GetComponent<Collider2D>();
-
+        Physics2D.IgnoreLayerCollision(9, 9);
         GameObject bullet = Instantiate(bulletPrefab, launchPoint.position, Quaternion.identity);
         Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), playerCollider);
         bullet.transform.eulerAngles = this.transform.eulerAngles;
