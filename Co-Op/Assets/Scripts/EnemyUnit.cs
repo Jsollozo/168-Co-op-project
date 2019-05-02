@@ -12,6 +12,7 @@ public class EnemyUnit : NetworkBehaviour
     private Rigidbody2D rb;
     protected Health health;
     private NavMeshAgent agent;
+    [SerializeField] float findTargetRate = 15f;
 
     // Start is called before the first frame update
     virtual public void Start()
@@ -23,13 +24,15 @@ public class EnemyUnit : NetworkBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        StartCoroutine(FindTarget());
     }
 
     // Update is called once per frame
     virtual public void Update()
     {
         // update target
-        CmdFindTarget();
+        //CmdFindTarget();
     }
 
     private void FixedUpdate()
@@ -54,6 +57,7 @@ public class EnemyUnit : NetworkBehaviour
         health.TakeDamage(damage);
         if (health.GetHealth() <= 0)
         {
+            StopCoroutine(FindTarget());
             Die();
         }
     }
@@ -61,6 +65,16 @@ public class EnemyUnit : NetworkBehaviour
     virtual protected void Die()
     {
         Destroy(gameObject);
+    }
+
+    IEnumerator FindTarget()
+    {
+        for (; ; )
+        {
+            CmdFindTarget();
+            yield return new WaitForSeconds(findTargetRate);
+
+        }
     }
 
     [Command]
@@ -74,6 +88,7 @@ public class EnemyUnit : NetworkBehaviour
             {
                 return;
             }
+
         }
         // if target is not a valid marked player, find the marked player and set as target
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -85,8 +100,10 @@ public class EnemyUnit : NetworkBehaviour
                 return;
             }
         }
-        // if no marked player is found, set target to null and stop movement
-        target = null;
+        // if no marked player is found, set target to random player so that enemies still do something.
+        int rand = Random.Range(0, players.Length);
+
+        target = players[rand];
         agent.isStopped = true;
     }
 

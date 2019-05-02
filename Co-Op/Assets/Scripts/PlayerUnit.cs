@@ -142,7 +142,7 @@ public class PlayerUnit : NetworkBehaviour
         if (collision.collider.tag == "HealBullet")
         {
             Debug.Log("player collided with heal bullet");
-            Heal(0.5f);
+            Heal(5f);
         }
     }
 

@@ -897,6 +897,21 @@ PrefabInstance:
       propertyPath: markIntervals
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2762751157363692819, guid: 2187f7989a49fc1458fc67b8207b569b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3263980117780791396, guid: 2187f7989a49fc1458fc67b8207b569b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496718023569521214, guid: 2187f7989a49fc1458fc67b8207b569b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2187f7989a49fc1458fc67b8207b569b, type: 3}
 --- !u!1001 &394820349022151979
