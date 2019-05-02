@@ -468,6 +468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  score: 10
+  knockback: 1
 --- !u!58 &3792599687685704468
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -498,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 10
   healthbar: {fileID: 1619435657313781490}
+  healthbackground: {fileID: 0}
 --- !u!195 &7493793436574312766
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vcam: {fileID: 0}
-  moveSpeed: 7
+  moveSpeed: 5
   direction: {x: 0, y: 0, z: 0}
   angle: 0
   bulletPrefab: {fileID: 8985780975561200802, guid: 66d303083cbb7084b86a5ab725a24a4c,

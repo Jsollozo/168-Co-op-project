@@ -27,8 +27,8 @@ public class ExplodingEnemy : EnemyUnit
 
     protected override void Die()
     {
+        base.Die();
         Explode();
-        Destroy(this.gameObject);
     }
 
     private void Explode()

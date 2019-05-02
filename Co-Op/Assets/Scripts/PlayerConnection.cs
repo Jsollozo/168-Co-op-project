@@ -7,10 +7,19 @@ public class PlayerConnection : NetworkBehaviour
 {
 
     public GameObject playerPrefab;
+    public int positionIndex;
+    private Vector3[] positions;
 
     // Start is called before the first frame update
     void Start()
     {
+        positions = new Vector3[] {
+            new Vector3(3,2,0),
+            new Vector3(-3,2,0),
+            new Vector3(-3,-2,0),
+            new Vector3(3,-2,0)
+        };
+
         if (!isLocalPlayer)
         {
             return;
@@ -28,7 +37,7 @@ public class PlayerConnection : NetworkBehaviour
     {
         Debug.Log(playerPrefab.name);
 
-        GameObject player = Instantiate(playerPrefab);
+        GameObject player = Instantiate(playerPrefab, positions[positionIndex], Quaternion.identity);
 
         //myPlayerUnit = player;
 

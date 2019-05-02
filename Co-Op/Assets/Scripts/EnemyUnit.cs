@@ -7,12 +7,14 @@ using UnityEngine.AI;
 public class EnemyUnit : NetworkBehaviour
 {
     public float moveSpeed;
+    public int score;
 
     private GameObject target;
     private Rigidbody2D rb;
     protected Health health;
     private NavMeshAgent agent;
-    [SerializeField] float findTargetRate = 15f;
+    private GameController gameController;
+    private Vector3 direction;
 
     // Start is called before the first frame update
     virtual public void Start()
@@ -20,19 +22,20 @@ public class EnemyUnit : NetworkBehaviour
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
 
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+
         // prevent agent from making unwanted rotations
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        StartCoroutine(FindTarget());
     }
 
     // Update is called once per frame
     virtual public void Update()
     {
         // update target
-        //CmdFindTarget();
+        CmdFindTarget();
     }
 
     private void FixedUpdate()
@@ -57,24 +60,13 @@ public class EnemyUnit : NetworkBehaviour
         health.TakeDamage(damage);
         if (health.GetHealth() <= 0)
         {
-            StopCoroutine(FindTarget());
             Die();
         }
     }
 
     virtual protected void Die()
     {
-        Destroy(gameObject);
-    }
-
-    IEnumerator FindTarget()
-    {
-        for (; ; )
-        {
-            CmdFindTarget();
-            yield return new WaitForSeconds(findTargetRate);
-
-        }
+        CmdDie();
     }
 
     [Command]
@@ -100,11 +92,6 @@ public class EnemyUnit : NetworkBehaviour
                 return;
             }
         }
-        // if no marked player is found, set target to random player so that enemies still do something.
-        int rand = Random.Range(0, players.Length);
-
-        target = players[rand];
-        agent.isStopped = true;
     }
 
     [Command]
@@ -114,7 +101,7 @@ public class EnemyUnit : NetworkBehaviour
         if (target != null && isServer)
         {
             // set rotation
-            Vector3 direction = target.transform.position - transform.position;
+            direction = target.transform.position - transform.position;
             transform.right = direction;
 
             //// set velocity
@@ -124,5 +111,12 @@ public class EnemyUnit : NetworkBehaviour
             agent.destination = target.transform.position;
             agent.isStopped = false;
         }
+    }
+
+    [Command]
+    void CmdDie()
+    {
+        NetworkServer.Destroy(gameObject);
+        gameController.AddScore(score);
     }
 }

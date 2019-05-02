@@ -219,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 10
   healthbar: {fileID: 8622059209148799818}
+  healthbackground: {fileID: 0}
 --- !u!114 &5724223704184820592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +233,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  score: 15
+  knockback: 1
   bulletPrefab: {fileID: 3899257589895244597, guid: f966947d1faa54f5fbe4f374b30fb955,
     type: 3}
 --- !u!195 &4412879899854797877

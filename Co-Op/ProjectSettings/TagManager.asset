@@ -9,6 +9,9 @@ TagManager:
   - Bullet
   - Enemy
   - HealBullet
+  - EnemySpawner
+  - PowerupSpawner
+  - MarkItem
   layers:
   - Default
   - TransparentFX

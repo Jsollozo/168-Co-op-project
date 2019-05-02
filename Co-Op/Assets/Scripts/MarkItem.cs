@@ -9,19 +9,23 @@ public class MarkItem : NetworkBehaviour
     [SerializeField] bool wantsToDie = false;
     [SerializeField] float lifetime = 3f;
 
+    private GameController gameController;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DestroyItemCoroutine());
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+
+        //StartCoroutine(DestroyItemCoroutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(wantsToDie)
-        {
-            CmdDestroyItem();
-        }
+        //if(wantsToDie)
+        //{
+        //    CmdDestroyItem();
+        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,17 +39,20 @@ public class MarkItem : NetworkBehaviour
 
                 //Mark the player that hit the item
                 player.marked = true;
+
+                // Start game
+                gameController.GameStart();
             }
             CmdDestroyItem();
         }
     }
 
-    private IEnumerator DestroyItemCoroutine()
-    {
-        yield return new WaitForSeconds(lifetime);
-        wantsToDie = true;
+    //private IEnumerator DestroyItemCoroutine()
+    //{
+    //    yield return new WaitForSeconds(lifetime);
+    //    wantsToDie = true;
 
-    }
+    //}
 
     [Command]
     void CmdUnmarkPlayer()

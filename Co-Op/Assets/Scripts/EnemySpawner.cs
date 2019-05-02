@@ -11,7 +11,7 @@ public class EnemySpawner : NetworkBehaviour
     public override void OnStartServer()
     {
         // begin spawning enemies upon server start
-        StartCoroutine(SpawnEnemies());
+        //StartCoroutine(SpawnEnemies());
     }
 
     // Start is called before the first frame update
@@ -36,7 +36,7 @@ public class EnemySpawner : NetworkBehaviour
         }
     }
 
-    void SpawnEnemy()
+    public void SpawnEnemy()
     {
         // spawn a random enemy from list
         int rand = Random.Range(0, enemies.Count);

@@ -8,6 +8,7 @@ public class PlayerUnit : NetworkBehaviour
 {
     private Rigidbody2D rb;
     private Health health;
+    private GameController gameController;
     
     [SerializeField] CinemachineVirtualCamera vcam = null;
 
@@ -36,6 +37,8 @@ public class PlayerUnit : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+
         //Get the sprite renderer
         SpriteR = GetComponentInChildren<SpriteRenderer>();
 
@@ -154,6 +157,9 @@ public class PlayerUnit : NetworkBehaviour
             Debug.Log("Frozen/Dead");
             dead = true;
             health.SetBackgroundColor(Color.red);
+
+            if (marked)
+                gameController.GameOver();
         }
     }
 

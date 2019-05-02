@@ -11,10 +11,8 @@ public class PowerupSpawner : NetworkBehaviour
 
     public override void OnStartServer()
     {
-        // spawn a mark item upon server start
-        SpawnMarkItem();
         // begin spawning powerups upon server start
-        StartCoroutine(SpawnMarkItems());
+        //StartCoroutine(SpawnMarkItems());
     }
 
     // Start is called before the first frame update
@@ -38,7 +36,7 @@ public class PowerupSpawner : NetworkBehaviour
         }
     }
 
-    void SpawnMarkItem()
+    public void SpawnMarkItem()
     {
         GameObject spawnedItem = Instantiate(markItem, gameObject.transform.position, gameObject.transform.rotation);
         NetworkServer.Spawn(spawnedItem);
