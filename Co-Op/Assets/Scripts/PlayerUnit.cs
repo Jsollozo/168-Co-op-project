@@ -61,16 +61,13 @@ public class PlayerUnit : NetworkBehaviour
         }
 
         // *** only the below should be in update ***
-        if(vcam == null)
+        if(vcam == null && hasAuthority)
         {
-            Debug.Log("vcam is null");
-            if(hasAuthority)
-            {
-                Debug.Log("is local player");
-                vcam = GameObject.FindGameObjectWithTag("cam").GetComponent<CinemachineVirtualCamera>();
-                vcam.m_Follow = this.transform;
-                vcam.m_LookAt = this.transform;
-            }
+            //Debug.Log("vcam is null");
+            //Debug.Log("is local player");
+            vcam = GameObject.FindGameObjectWithTag("cam").GetComponent<CinemachineVirtualCamera>();
+            vcam.m_Follow = this.transform;
+            vcam.m_LookAt = this.transform;
         }
 
         if (!hasAuthority)
